@@ -1,0 +1,60 @@
+{
+  "context_version": 17,
+  "timestamp": "2026-09-07T17:55:00+03:00",
+  "context_hash": "BF33BC25CF4E620E3AC1ADEFBF13573377F8AE2E4FFD0B67F34AD684E0313D0D",
+  "active_files": [
+    "docs/display-setup.md",
+    "menu/data/drinks.json",
+    "menu/data/food.json",
+    "menu/board.html",
+    "menu/assets/css/menu.css",
+    "scripts/compress-menu-images.py",
+    "scripts/convert-menu-png.py",
+    "scripts/menu-image-prompts.json",
+    ".ai/CONTEXT.md"
+  ],
+  "active_file_hashes": {
+    "menu/data/drinks.json": "2AC6A991C59770A7EA6D0E6B5585E7BF01AC58432958266901673C83E2B3B73B",
+    "menu/assets/css/menu.css": "95AF2F513693F3E974905EEAFA6C9A6691EC18FDDB83870EA7EA7EA7A9B50ABC665",
+    "docs/display-setup.md": "511709DB71DBC0008505993C054CF5D6B5A9173F645FC8FBC1D32903B55240C7",
+    ".ai/CONTEXT.md": "6abb0ce89bea1ab71033d2cac52573c81097dd0ed10a49247577db75fe881a32",
+    "scripts/compress-menu-images.py": "D8A1CA59D53F06AD0C6F675101FF576CA5CD386AA1520C4DBE1190CBFB4F9D44",
+    "scripts/convert-menu-png.py": "pending",
+    "scripts/menu-image-prompts.json": "pending",
+    "menu/data/food.json": "1A115883C15B2EC046987964CFC2F78F695AB5165353865C81185C80CCE9F9BC",
+    "menu/board.html": "pending"
+  },
+  "decisions": [
+    "Portrait 9:16 for monitor",
+    "Food in food.json; board loads drinks+food",
+    "Public GitHub: coffee-friends-menu @ 61e871d; mirror coffee-menu @ d632850 for TV URL",
+    "ASSET_VER 20260812-v4: all 60 JPGs regenerated (46 drinks plastic cup no lid + 14 food white studio)",
+    "Do not use white-bg-menu-images.py (GrabCut)",
+    "Display: USB HDMI player + NC185B OK for now",
+    "Seasonal lineup live: 9 new + glyase/mango-chili refresh @ ef3dacd / d9fbcf9"
+  ],
+  "counts": {
+    "drinks": 56,
+    "drink_images": 55,
+    "food": 14,
+    "food_images": 14,
+    "sync_repo_images": 60,
+    "images_lt_100kb": 60,
+    "images_gt_500kb": 0,
+    "drinks_regenerated_v4": 46,
+    "food_regenerated_v4": 14
+  },
+  "asset_ver": "20260907-tv-rotate",
+  "deploy_commit": "efb145b",
+  "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
+  "last_error": null,
+  "retry_count": 0,
+  "blockers": [],
+  "next_action": "Hard refresh TV; tap rotate if hung the other way",
+  "mirror_commit": "bfcdee3",
+  "live_checks": {
+    "board_html_asset_ver": "20260812-v4",
+    "sync_head_matches_origin_main": true,
+    "total_images_mb": 3.1
+  }
+}

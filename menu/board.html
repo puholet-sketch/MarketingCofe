@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoffeeFriends — меню</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/menu.css?v=20260907-tv-rotate">
+</head>
+<body>
+  <button
+    type="button"
+    class="orient-btn"
+    id="orientBtn"
+    aria-label="Поворот экрана"
+    title="Поворот для вертикального монитора"
+  >⟳</button>
+
+  <div class="board" id="board">
+    <div class="board__frame" id="frame">
+      <!-- slides injected by JS -->
+    </div>
+    <div class="board__progress">
+      <div class="board__progress-bar" id="progress"></div>
+    </div>
+  </div>
+
+  <script>
+    const ASSET_VER = '20260907-tv-rotate';
+    const MENU_DISCOUNT_PERCENT = 20;
+    const PRELOAD_RADIUS = 2;
+    const ROTATE_KEY = 'cf-menu-rotate';
+    const ROTATE_MODES = ['off', 'cw', 'ccw'];
+
+    const TAG_LABELS = {
+      cold: 'холодный',
+      hot: 'горячий',
+      signature: 'авторский',
+      matcha: 'матча',
+      seasonal: 'сезонный',
+      dessert: 'десерт',
+      sweet: 'сладкое',
+      sandwich: 'сэндвич',
+      food: 'еда',
+      preorder: 'предзаказ'
+    };
+
+    function brandHtml(brand) {
+      const parts = (brand.name || 'CoffeeFriends').match(/^(.+?)(Friends)$/i);
+      if (parts) {
+        return `${parts[1]}<span class="gold">${parts[2]}</span>`;
+      }
+      return brand.name;
+    }
+
+    async function loadMenuData() {
+      if (location.protocol === 'file:') {
+        throw new Error('Открыт файл напрямую (file://). Браузер блокирует fetch JSON.\nНужен http://localhost:8080/board.html');
+      }
+      let drinksRes, foodRes;
+      try {
+        [drinksRes, foodRes] = await Promise.all([
+          fetch('data/drinks.json'),
+          fetch('data/food.json')
+        ]);
+      } catch (e) {
+        throw new Error('Failed to fetch — сервер не отвечает или открыт не тот URL.\nПроверьте: http://localhost:8080/board.html');
+      }
+      if (!drinksRes.ok) throw new Error('Не найден data/drinks.json — запустите сервер из папки menu');
+      const drinks = await drinksRes.json();
+      const food = foodRes.ok ? await foodRes.json() : { categories: [] };
+      return { drinks, food };
+    }
+
+    function createIntroSlide(brand) {
+      const slide = document.createElement('article');
+      slide.className = 'slide slide--intro';
+      slide.innerHTML = `
+        <div class="intro__mark" aria-hidden="true"></div>
+        <h1 class="intro__title">${brandHtml(brand)}</h1>
+        <p class="intro__tagline">${brand.tagline || ''}</p>
+        <div class="intro__line" aria-hidden="true"></div>
+        <p class="intro__bot">@coffeefriends_orders_bot</p>
+      `;
+      return slide;
+    }
+
+    function formatMeta(item, opts = {}) {
+      const volume = (item.volume || '').trim();
+      const price = (item.price || '').trim();
+      const volumeOnlyPrice = /^(от\s+)?\d[\d\s]*\s*₽$/i.test(volume);
+      const discountPercent = opts.discountPercent || null;
+
+      function formatPriceText(priceText) {
+        return priceText.replace(/^от\s+/i, '<span class="slide__price-prefix">от</span> ');
+      }
+
+      let html = '';
+
+      function renderPrice(priceText) {
+        if (!discountPercent) {
+          return `<p class="slide__price">${formatPriceText(priceText)}</p>`;
+        }
+
+        return `
+          <div class="slide__priceBox">
+            <span class="slide__priceWrap">
+              <p class="slide__price slide__price--old">${formatPriceText(priceText)}</p>
+              <span class="slide__strike" aria-hidden="true"></span>
+            </span>
+            <span class="slide__discount">${discountPercent}% скидка</span>
+          </div>
+        `;
+      }
+
+      // Volume with size tiers is too noisy for storefront slides:
+      // keep only the minimal gold price and hide the per-size list.
+      if (volume && /₽/.test(volume) && !volumeOnlyPrice) {
+        if (price) html += renderPrice(price);
+        return html;
+      }
+
+      // Plain volume (350 мл / порция) + gold price
+      if (volume && !volumeOnlyPrice) {
+        html += `<p class="slide__volume">${volume}</p>`;
+      }
+      if (price) {
+        html += renderPrice(price);
+      } else if (volumeOnlyPrice && volume) {
+        html += renderPrice(volume);
+      }
+      return html;
+    }
+
+    function placeholderHtml(kind) {
+      if (kind === 'food') {
+        return '<div class="slide__photo--placeholder placeholder-plate" aria-hidden="true"></div>';
+      }
+      return `
+        <div class="slide__photo--placeholder placeholder-cup" aria-hidden="true">
+          <div class="placeholder-cup__lid"></div>
+          <div class="placeholder-cup__body"></div>
+        </div>`;
+    }
+
+    function accentClassFor(item, categoryTitle, kind = 'drink') {
+      const id = String(item.id || '').toLowerCase();
+      const name = String(item.name || '').toLowerCase();
+      const desc = String(item.description || '').toLowerCase();
+      const tags = Array.isArray(item.tags) ? item.tags.map(String) : [];
+      const text = `${id} ${name} ${desc} ${categoryTitle || ''}`.toLowerCase();
+
+      if (kind === 'food') {
+        if (/салат|salat|овощ|broccoli|chiabatta|sendvich|roll|ролл/.test(text)) return 'accent-fresh';
+        if (/круас|печенье|батончик|сочник|трубоч|ириск|орех/.test(text)) return 'accent-bakery';
+        return 'accent-warm';
+      }
+
+      if (tags.includes('matcha') || /matcha|матча/.test(text)) return 'accent-matcha';
+      if (/лимонад|апельсин|orange|fresh|фреш|tonik|тоник|citrus|lemon/.test(text)) return 'accent-citrus';
+      if (/клубник|малин|ягод|pink|red/.test(text)) return 'accent-berry';
+      if (/айс|cold|iced|глясе|frappuccino|милкшейк|лед|ice/.test(text) || tags.includes('cold')) return 'accent-ice';
+      if (/шоколад|мокко|какао|cocoa|mocha/.test(text)) return 'accent-cocoa';
+      if (/раф|капуч|латте|эспрессо|americano|coffee|кофе/.test(text) || tags.includes('hot')) return 'accent-coffee';
+      return 'accent-warm';
+    }
+
+    function isNewItem(item) {
+      return item.new === true;
+    }
+
+    function newBadgeHtml(variant = 'inline') {
+      const cls = variant === 'flag' ? 'slide__newFlag' : 'slide__new';
+      return `<span class="${cls}"><span>Новинка!</span></span>`;
+    }
+
+    function createItemSlide(item, categoryTitle, brand, kind = 'drink') {
+      const slide = document.createElement('article');
+      slide.className = 'slide';
+      if (item.name && item.name.length > 22) {
+        slide.classList.add('slide--compact');
+      }
+
+      const discountPercent = MENU_DISCOUNT_PERCENT;
+      const isNew = isNewItem(item);
+
+      const tagsHtml = (item.tags || [])
+        .map(t => `<span class="tag">${TAG_LABELS[t] || t}</span>`)
+        .join('');
+
+      const safeName = String(item.name || '').replace(/"/g, '&quot;');
+      const accentClass = accentClassFor(item, categoryTitle, kind);
+      const photoNewClass = isNew ? ' slide__photo--hasNew' : '';
+
+      slide.innerHTML = `
+        <header class="slide__header">
+          <div class="brand-mark">
+            <span class="brand-mark__icon" aria-hidden="true"></span>
+            <span class="brand-mark__text">${brandHtml(brand)}</span>
+          </div>
+          <span class="category-badge">${categoryTitle}</span>
+        </header>
+        <div class="slide__photo ${accentClass}${photoNewClass}" data-image="${item.image}" data-alt="${safeName}">
+          ${isNew ? newBadgeHtml('flag') : ''}
+          ${placeholderHtml(kind)}
+        </div>
+        <div class="slide__info">
+          <h2 class="slide__name">${item.name}</h2>
+          <div class="slide__meta">
+            <div class="slide__promoRow">
+              ${isNew ? newBadgeHtml('inline') : ''}
+              ${formatMeta(item, { discountPercent })}
+            </div>
+          </div>
+          <p class="slide__desc">${item.description || ''}</p>
+          ${tagsHtml ? `<div class="slide__tags">${tagsHtml}</div>` : ''}
+        </div>
+      `;
+
+      return slide;
+    }
+
+    function loadSlideImage(slide) {
+      const photoWrap = slide && slide.querySelector('.slide__photo');
+      if (!photoWrap || photoWrap.dataset.loaded === '1' || !photoWrap.dataset.image) return;
+
+      photoWrap.dataset.loaded = '1';
+      const img = new Image();
+      img.alt = photoWrap.dataset.alt || '';
+      img.decoding = 'async';
+      img.onload = () => {
+        photoWrap.innerHTML = '';
+        photoWrap.appendChild(img);
+      };
+      img.onerror = () => {
+        photoWrap.dataset.loaded = '0';
+        photoWrap.classList.add('slide__photo--placeholder');
+      };
+      img.src = photoWrap.dataset.image + '?v=' + ASSET_VER;
+    }
+
+    function preloadAround(slides, index, radius = PRELOAD_RADIUS) {
+      const n = slides.length;
+      for (let d = 0; d <= radius; d++) {
+        loadSlideImage(slides[(index + d) % n]);
+        if (d > 0) loadSlideImage(slides[(index - d + n) % n]);
+      }
+    }
+
+    function flattenCategories(menu, itemKey = 'drinks') {
+      const slides = [];
+      for (const cat of menu.categories || []) {
+        const items = cat[itemKey] || cat.items || [];
+        for (const item of items) {
+          slides.push({
+            item,
+            categoryTitle: cat.title,
+            kind: itemKey === 'items' ? 'food' : 'drink'
+          });
+        }
+      }
+      return slides;
+    }
+
+    function applyFrame(settings) {
+      const frame = document.getElementById('frame');
+      const progress = document.querySelector('.board__progress');
+      const orient = settings.orientation === 'landscape' ? 'landscape' : 'portrait';
+
+      frame.setAttribute('data-orient', orient);
+
+      if (progress && document.documentElement.getAttribute('data-rotate') === 'off') {
+        if (orient === 'landscape') {
+          progress.style.width = 'min(100vw, calc(100vh * 16 / 9))';
+        } else {
+          progress.style.width = 'min(100vw, calc(100vh * 9 / 16))';
+        }
+      } else if (progress) {
+        progress.style.width = '';
+      }
+    }
+
+    function getRotateMode() {
+      try {
+        const saved = localStorage.getItem(ROTATE_KEY);
+        if (saved && ROTATE_MODES.includes(saved)) return saved;
+      } catch (e) { /* ignore */ }
+      // Android TV / landscape browser + hung portrait monitor
+      return window.innerWidth > window.innerHeight ? 'cw' : 'off';
+    }
+
+    function setRotateMode(mode) {
+      if (!ROTATE_MODES.includes(mode)) mode = 'off';
+      document.documentElement.setAttribute('data-rotate', mode);
+      try { localStorage.setItem(ROTATE_KEY, mode); } catch (e) { /* ignore */ }
+
+      const btn = document.getElementById('orientBtn');
+      if (btn) {
+        btn.dataset.mode = mode;
+        btn.setAttribute('aria-pressed', mode !== 'off' ? 'true' : 'false');
+        btn.title = mode === 'off'
+          ? 'Без поворота'
+          : mode === 'cw'
+            ? 'Поворот 90° (по часовой) — тап сменить'
+            : 'Поворот 90° (против часовой) — тап сменить';
+      }
+
+      const progress = document.querySelector('.board__progress');
+      if (progress) {
+        progress.style.width = mode === 'off' ? progress.style.width : '';
+      }
+    }
+
+    function cycleRotateMode() {
+      const cur = document.documentElement.getAttribute('data-rotate') || 'off';
+      const next = ROTATE_MODES[(ROTATE_MODES.indexOf(cur) + 1) % ROTATE_MODES.length];
+      setRotateMode(next);
+    }
+
+    function initOrientControl() {
+      setRotateMode(getRotateMode());
+      const btn = document.getElementById('orientBtn');
+      if (btn) btn.addEventListener('click', cycleRotateMode);
+    }
+
+    function runSlideshow(slides, durationSec) {
+      const bar = document.getElementById('progress');
+      let index = 0;
+      let timer = null;
+
+      function show(i) {
+        slides.forEach((s, j) => s.classList.toggle('slide--active', j === i));
+        preloadAround(slides, i);
+
+        bar.style.transition = 'none';
+        bar.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            bar.style.transition = `width ${durationSec}s linear`;
+            bar.style.width = '100%';
+          });
+        });
+      }
+
+      function tick() {
+        index = (index + 1) % slides.length;
+        show(index);
+      }
+
+      show(0);
+      timer = setInterval(tick, durationSec * 1000);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearInterval(timer);
+          timer = null;
+        } else if (!timer) {
+          show(index);
+          timer = setInterval(tick, durationSec * 1000);
+        }
+      });
+    }
+
+    async function init() {
+      try {
+        initOrientControl();
+        const { drinks, food } = await loadMenuData();
+        applyFrame(drinks.settings);
+
+        const frame = document.getElementById('frame');
+        const allSlides = [createIntroSlide(drinks.brand)];
+
+        for (const { item, categoryTitle, kind } of flattenCategories(drinks, 'drinks')) {
+          allSlides.push(createItemSlide(item, categoryTitle, drinks.brand, kind));
+        }
+
+        for (const { item, categoryTitle, kind } of flattenCategories(food, 'items')) {
+          allSlides.push(createItemSlide(item, categoryTitle, drinks.brand, kind));
+        }
+
+        allSlides.forEach(s => frame.appendChild(s));
+        runSlideshow(allSlides, drinks.settings.slideDurationSec || 3.5);
+      } catch (err) {
+        document.body.innerHTML = `<pre style="color:#c9b067;padding:2rem;font-family:monospace">${err.message}\n\nЗапуск:\ncd d:\\projects\\MarketingCofe\\menu\npython -m http.server 8080\n\n→ http://localhost:8080/board.html</pre>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
