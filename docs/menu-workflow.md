@@ -12,7 +12,9 @@
 - `image` — путь к фото, например `assets/images/drinks/mango-matcha.jpg`
 - `tags` — опционально: `cold`, `signature`, `matcha`
 
-Фото: вертикальные или квадратные, **минимум 800×800 px**, светлый фон, стакан по центру (как Drinkit).
+Фото: только по `.ai/IMAGE_GEN_RULES.md` — white studio `#FFFFFF`, напитки в **прозрачном пластиковом стакане без крышки** (open top). Промпты: `scripts/menu-image-prompts.json`. **Не** использовать GrabCut-скрипт.
+
+GenerateImage 3:4 → `scripts/convert-menu-png.py` → JSON → bump `ASSET_VER` → push оба GitHub Pages.
 
 ## 2. Положить фото
 

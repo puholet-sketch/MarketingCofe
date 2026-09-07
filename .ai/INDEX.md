@@ -3,6 +3,7 @@
 | Путь | Назначение |
 |------|------------|
 | `.ai/CONTEXT.md` | Краткий контекст проекта |
+| `.ai/IMAGE_GEN_RULES.md` | **Канон генерации фото** (plastic cup, white studio, pipeline) |
 | `.ai/state.json` | Машинное состояние |
 | `docs/display-setup.md` | Монитор, плеер, монтаж на изображение |
 | `docs/menu-workflow.md` | Как собрать контент и выкатить на флеш |
@@ -24,10 +25,8 @@
 | `.ai/data/seasonal-drinks-draft-2026-08.md` | Черновик сезонных: имена, цены, техкарты |
 | `.ai/data/barista-techcards-chat.txt` | Текст техкарт для чата бариста (готово к копированию) |
 
-## Asset deploy (2026-08-12)
+## Asset deploy
 
-- Commit: **61e871d** on `coffee-friends-menu` main (full v4 regen)
-- Prior: **afbbefa** (partial plastic-cup), **7938b35** (interim), **0906236** (restore-ai)
-- **ASSET_VER:** `20260812-v4`
-- **60** images under `assets/images/`; none >500 KB; all <100 KB
-- **46** drinks + **14** food JPGs fully regenerated (plastic cup no lid, white studio)
+- Public: `puholet-sketch/coffee-friends-menu` + mirror `coffee-menu`
+- Image canon: `.ai/IMAGE_GEN_RULES.md` / `scripts/menu-image-prompts.json`
+- **Do not use** `scripts/white-bg-menu-images.py` (GrabCut)

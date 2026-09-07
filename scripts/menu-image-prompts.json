@@ -1,5 +1,22 @@
 {
   "style": "Premium commercial product photo for portrait digital menu board. Pure white seamless background #FFFFFF, soft natural contact shadow, centered hero product filling 70-85% of frame, 35-degree camera angle, crisp studio lighting, side-back light for liquid glow, ultra realistic, appetizing, no text, no logo, no watermark, no hands, minimal tasteful garnish props only where noted. MANDATORY for drinks: clear disposable plastic takeaway coffee-shop cup, NO lid, NO dome lid, NO straw hole cover, open top with drink surface foam or ice fully visible.",
+  "rules": {
+    "aspect": "3:4",
+    "background": "#FFFFFF",
+    "drinks_vessel": "clear plastic takeaway cup",
+    "drinks_lid": false,
+    "drinks_open_top": true,
+    "forbidden": ["glass cup", "ceramic mug", "dome lid", "GrabCut white-bg-menu-images.py", "beige studio pack"],
+    "pipeline": [
+      "GenerateImage 3:4",
+      "scripts/convert-menu-png.py",
+      "optional compress-menu-images.py",
+      "update drinks.json|food.json + menu-image-prompts.json",
+      "bump ASSET_VER",
+      "push coffee-friends-menu + coffee-menu"
+    ],
+    "doc": ".ai/IMAGE_GEN_RULES.md"
+  },
   "drinks": [
     {"file": "matcha-classic.jpg", "prompt": "Hot matcha latte in clear plastic takeaway cup no lid open top, vibrant green matcha with creamy milk swirl visible, tiny matcha powder dusting nearby, subtle steam wisps, white studio"},
     {"file": "matcha-blue.jpg", "prompt": "Iced blue butterfly pea matcha latte in clear plastic takeaway cup no lid open top with ice cubes, sky-blue and white layers visible, one fresh blueberry beside cup, white studio"},

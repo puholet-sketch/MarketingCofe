@@ -1,7 +1,7 @@
 {
-  "context_version": 18,
-  "timestamp": "2026-09-07T18:30:00+03:00",
-  "context_hash": "D636467933021FEAE0AE668E6DFB9B1C9CBDAB4FF35251302EA2A15873284995",
+  "context_version": 22,
+  "timestamp": "2026-09-07T20:20:00+03:00",
+  "context_hash": "2AD45B730BEEA67A2572A61FE2A1BFB609D00A5E41D1E670D7F031073077EB75",
   "active_files": [
     "docs/display-setup.md",
     "menu/data/drinks.json",
@@ -28,10 +28,9 @@
     "Portrait 9:16 for monitor",
     "Food in food.json; board loads drinks+food",
     "Public GitHub: coffee-friends-menu @ 61e871d; mirror coffee-menu @ d632850 for TV URL",
-    "ASSET_VER 20260812-v4: all 60 JPGs regenerated (46 drinks plastic cup no lid + 14 food white studio)",
-    "Do not use white-bg-menu-images.py (GrabCut)",
     "Display: USB HDMI player + NC185B OK for now",
-    "Seasonal lineup live: 9 new + glyase/mango-chili refresh @ ef3dacd / d9fbcf9"
+    "Seasonal lineup live: 9 new + glyase/mango-chili refresh @ ef3dacd / d9fbcf9",
+    "Image canon locked: .ai/IMAGE_GEN_RULES.md + menu-image-prompts.json style (plastic cup no lid, white studio); no GrabCut"
   ],
   "counts": {
     "drinks": 56,
@@ -44,17 +43,19 @@
     "drinks_regenerated_v4": 46,
     "food_regenerated_v4": 14
   },
-  "asset_ver": "20260907-orient-fix",
+  "asset_ver": "20260907-caption-max",
   "deploy_commit": "52519e7",
   "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
   "last_error": null,
   "retry_count": 0,
   "blockers": [],
-  "next_action": "Hard refresh TV after orient button move",
+  "next_action": "Add/remove menu items using IMAGE_GEN_RULES.md",
   "mirror_commit": "b160982",
   "live_checks": {
     "board_html_asset_ver": "20260812-v4",
     "sync_head_matches_origin_main": true,
     "total_images_mb": 3.1
-  }
+  },
+  "image_gen_rules": ".ai/IMAGE_GEN_RULES.md",
+  "image_prompts": "scripts/menu-image-prompts.json"
 }
