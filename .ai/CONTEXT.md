@@ -1,6 +1,6 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 17
+context_version: 18
 updated: 2026-09-07
 
 ## Цель
@@ -9,11 +9,11 @@ updated: 2026-09-07
 
 ## Статус
 
-- Live: `coffee-friends-menu` + `coffee-menu`, `ASSET_VER=20260907-tv-rotate`
-- Android TV: браузер landscape, монитор висит вертикально → кнопка ⟳ (правый верх) циклы `off → cw → ccw`; на landscape по умолчанию `cw`, сохраняется в localStorage
-- Новинки: `"new": true` → бейдж **Новинка!** + скидка 20%
-- Малина Сливки Фраппе снята
+- Live: `coffee-friends-menu` + `coffee-menu`, `ASSET_VER=20260907-orient-fix`
+- Кнопка ⟳ внутри board, **нижний правый** угол (не пересекается с буллетом CoffeeFriends)
+- TV rotate: off → cw → ccw, localStorage; landscape default cw
+- Новинки: `"new": true` + скидка 20%
 
 ## Следующий шаг
 
-На TV: Ctrl+F5, при необходимости тапнуть ⟳ ещё раз (если монитор повёрнут в другую сторону).
+Hard refresh TV после деплоя.

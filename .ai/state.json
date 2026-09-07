@@ -1,7 +1,7 @@
 {
-  "context_version": 17,
-  "timestamp": "2026-09-07T17:55:00+03:00",
-  "context_hash": "BF33BC25CF4E620E3AC1ADEFBF13573377F8AE2E4FFD0B67F34AD684E0313D0D",
+  "context_version": 18,
+  "timestamp": "2026-09-07T18:30:00+03:00",
+  "context_hash": "D636467933021FEAE0AE668E6DFB9B1C9CBDAB4FF35251302EA2A15873284995",
   "active_files": [
     "docs/display-setup.md",
     "menu/data/drinks.json",
@@ -44,14 +44,14 @@
     "drinks_regenerated_v4": 46,
     "food_regenerated_v4": 14
   },
-  "asset_ver": "20260907-tv-rotate",
-  "deploy_commit": "efb145b",
+  "asset_ver": "20260907-orient-fix",
+  "deploy_commit": "52519e7",
   "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
   "last_error": null,
   "retry_count": 0,
   "blockers": [],
-  "next_action": "Hard refresh TV; tap rotate if hung the other way",
-  "mirror_commit": "bfcdee3",
+  "next_action": "Hard refresh TV after orient button move",
+  "mirror_commit": "b160982",
   "live_checks": {
     "board_html_asset_ver": "20260812-v4",
     "sync_head_matches_origin_main": true,
