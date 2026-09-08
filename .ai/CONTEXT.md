@@ -1,6 +1,6 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 24
+context_version: 25
 updated: 2026-09-08
 
 ## Цель
@@ -9,9 +9,9 @@ updated: 2026-09-08
 
 ## Статус
 
-- Live: `ASSET_VER=20260908-food-nodisc`
-- Скидка 20%: **только напитки**; еда — обычная цена без зачёркивания
-- Правило фото: `.ai/IMAGE_GEN_RULES.md` — plastic cup, no lid; лёд только у реальных айс-позиций
+- Live: `ASSET_VER=20260908-food-real`
+- Еда: фото под наши правила (белый фон) + вид продукта Double Double / Sensorica
+- Скидка 20% только на напитки
 
 ## Следующий шаг
 
