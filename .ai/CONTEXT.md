@@ -1,7 +1,7 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 22
-updated: 2026-09-07
+context_version: 23
+updated: 2026-09-08
 
 ## Цель
 
@@ -9,15 +9,12 @@ updated: 2026-09-07
 
 ## Статус
 
-- Live: `ASSET_VER=20260907-caption-max` — подписи max по ширине/высоте, без переносов; TV rotate ⟳
-- **Правило фото (зафиксировано):** `.ai/IMAGE_GEN_RULES.md` + `scripts/menu-image-prompts.json` → `style`
-  - белый `#FFFFFF`, soft shadow, 3:4
-  - напитки: **plastic takeaway cup, NO lid, open top**
-  - еда: тарелка/бокс на white studio
-  - **не** GrabCut (`white-bg-menu-images.py`)
-- Каталог: `menu/data/drinks.json`, `menu/data/food.json`; новинки `"new": true`
-- Deploy: `coffee-friends-menu` + зеркало `coffee-menu`; исходник `MarketingCofe`
+- Live: `ASSET_VER=20260908-season`
+- Правило фото: `.ai/IMAGE_GEN_RULES.md` — plastic cup, no lid, white studio; **лёд только** у айс-латте / тоник / бамбл / айс-мокко / лимонад / милкшейк / фрап / кокос-карамель / фреш
+- Снято 13 напитков + ириски; без регена снятых фото
+- Цветные матчи перегенерены **без льда**
+- Сезонные чаи 450 мл / 350 ₽ + Матча Апельсин Кедр / Хвойный Раф 380 ₽ + Мокачино 350 ₽
 
 ## Следующий шаг
 
-При add/remove позиций — строго по `.ai/IMAGE_GEN_RULES.md`.
+Hard refresh TV; add/remove дальше строго по IMAGE_GEN_RULES.md
