@@ -1,7 +1,7 @@
 {
-  "context_version": 22,
-  "timestamp": "2026-09-07T20:20:00+03:00",
-  "context_hash": "2AD45B730BEEA67A2572A61FE2A1BFB609D00A5E41D1E670D7F031073077EB75",
+  "context_version": 23,
+  "timestamp": "2026-09-08T21:55:00+03:00",
+  "context_hash": "0773D1B8CED03E8BA520B13DDD213ED2AFEF1FB014F5B283744C6A53F6C83736",
   "active_files": [
     "docs/display-setup.md",
     "menu/data/drinks.json",
@@ -33,24 +33,24 @@
     "Image canon locked: .ai/IMAGE_GEN_RULES.md + menu-image-prompts.json style (plastic cup no lid, white studio); no GrabCut"
   ],
   "counts": {
-    "drinks": 56,
+    "drinks": 45,
     "drink_images": 55,
-    "food": 14,
-    "food_images": 14,
+    "food": 13,
+    "food_images": 13,
     "sync_repo_images": 60,
     "images_lt_100kb": 60,
     "images_gt_500kb": 0,
     "drinks_regenerated_v4": 46,
     "food_regenerated_v4": 14
   },
-  "asset_ver": "20260907-caption-max",
-  "deploy_commit": "52519e7",
+  "asset_ver": "20260908-season",
+  "deploy_commit": "e79ea84",
   "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
   "last_error": null,
   "retry_count": 0,
   "blockers": [],
-  "next_action": "Add/remove menu items using IMAGE_GEN_RULES.md",
-  "mirror_commit": "b160982",
+  "next_action": "Hard refresh TV after seasonal catalog",
+  "mirror_commit": "ef91992",
   "live_checks": {
     "board_html_asset_ver": "20260812-v4",
     "sync_head_matches_origin_main": true,
