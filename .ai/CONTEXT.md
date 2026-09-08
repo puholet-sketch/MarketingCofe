@@ -1,6 +1,6 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 25
+context_version: 26
 updated: 2026-09-08
 
 ## Цель
@@ -9,8 +9,8 @@ updated: 2026-09-08
 
 ## Статус
 
-- Live: `ASSET_VER=20260908-food-real`
-- Еда: фото под наши правила (белый фон) + вид продукта Double Double / Sensorica
+- Live: `ASSET_VER=20260908-rolly`
+- Еда: тортилья-ролл Sensorica перегенерирован (белый фон, белая тарелка)
 - Скидка 20% только на напитки
 
 ## Следующий шаг

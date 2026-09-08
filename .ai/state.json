@@ -1,5 +1,5 @@
 {
-  "context_version": 23,
+  "context_version": 26,
   "timestamp": "2026-09-08T21:55:00+03:00",
   "context_hash": "0773D1B8CED03E8BA520B13DDD213ED2AFEF1FB014F5B283744C6A53F6C83736",
   "active_files": [
@@ -43,13 +43,13 @@
     "drinks_regenerated_v4": 46,
     "food_regenerated_v4": 14
   },
-  "asset_ver": "20260908-season",
+  "asset_ver": "20260908-rolly",
   "deploy_commit": "e79ea84",
   "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
   "last_error": null,
   "retry_count": 0,
   "blockers": [],
-  "next_action": "Hard refresh TV after seasonal catalog",
+  "next_action": "Hard refresh TV after sandwich-roll photo",
   "mirror_commit": "ef91992",
   "live_checks": {
     "board_html_asset_ver": "20260812-v4",
