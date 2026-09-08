@@ -1,6 +1,6 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 23
+context_version: 24
 updated: 2026-09-08
 
 ## Цель
@@ -9,12 +9,10 @@ updated: 2026-09-08
 
 ## Статус
 
-- Live: `ASSET_VER=20260908-season`
-- Правило фото: `.ai/IMAGE_GEN_RULES.md` — plastic cup, no lid, white studio; **лёд только** у айс-латте / тоник / бамбл / айс-мокко / лимонад / милкшейк / фрап / кокос-карамель / фреш
-- Снято 13 напитков + ириски; без регена снятых фото
-- Цветные матчи перегенерены **без льда**
-- Сезонные чаи 450 мл / 350 ₽ + Матча Апельсин Кедр / Хвойный Раф 380 ₽ + Мокачино 350 ₽
+- Live: `ASSET_VER=20260908-food-nodisc`
+- Скидка 20%: **только напитки**; еда — обычная цена без зачёркивания
+- Правило фото: `.ai/IMAGE_GEN_RULES.md` — plastic cup, no lid; лёд только у реальных айс-позиций
 
 ## Следующий шаг
 
-Hard refresh TV; add/remove дальше строго по IMAGE_GEN_RULES.md
+Hard refresh TV.
