@@ -1,7 +1,7 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 26
-updated: 2026-09-08
+context_version: 27
+updated: 2026-09-09
 
 ## Цель
 
@@ -9,8 +9,9 @@ updated: 2026-09-08
 
 ## Статус
 
-- Live: `ASSET_VER=20260908-rolly`
-- Еда: тортилья-ролл Sensorica перегенерирован (белый фон, белая тарелка)
+- Live: `ASSET_VER=20260909-no-raf`
+- Убран «Раф авторский» (нет в ассортименте)
+- Обычный раф и хвойный раф на месте
 - Скидка 20% только на напитки
 
 ## Следующий шаг

@@ -1,5 +1,5 @@
 {
-  "context_version": 26,
+  "context_version": 27,
   "timestamp": "2026-09-08T21:55:00+03:00",
   "context_hash": "0773D1B8CED03E8BA520B13DDD213ED2AFEF1FB014F5B283744C6A53F6C83736",
   "active_files": [
@@ -33,7 +33,7 @@
     "Image canon locked: .ai/IMAGE_GEN_RULES.md + menu-image-prompts.json style (plastic cup no lid, white studio); no GrabCut"
   ],
   "counts": {
-    "drinks": 45,
+    "drinks": 44,
     "drink_images": 55,
     "food": 13,
     "food_images": 13,
@@ -43,7 +43,7 @@
     "drinks_regenerated_v4": 46,
     "food_regenerated_v4": 14
   },
-  "asset_ver": "20260908-rolly",
+  "asset_ver": "20260909-no-raf",
   "deploy_commit": "e79ea84",
   "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
   "last_error": null,
