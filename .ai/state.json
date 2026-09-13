@@ -1,61 +1,26 @@
 {
-  "context_version": 27,
-  "timestamp": "2026-09-08T21:55:00+03:00",
-  "context_hash": "0773D1B8CED03E8BA520B13DDD213ED2AFEF1FB014F5B283744C6A53F6C83736",
-  "active_files": [
-    "docs/display-setup.md",
+  "context_version": 28,
+  "timestamp": "2026-09-13T19:20:00+03:00",
+  "hot_files": [
+    "menu/board.html",
     "menu/data/drinks.json",
     "menu/data/food.json",
-    "menu/board.html",
     "menu/assets/css/menu.css",
-    "scripts/compress-menu-images.py",
-    "scripts/convert-menu-png.py",
-    "scripts/menu-image-prompts.json",
-    ".ai/CONTEXT.md"
-  ],
-  "active_file_hashes": {
-    "menu/data/drinks.json": "2AC6A991C59770A7EA6D0E6B5585E7BF01AC58432958266901673C83E2B3B73B",
-    "menu/assets/css/menu.css": "95AF2F513693F3E974905EEAFA6C9A6691EC18FDDB83870EA7EA7EA7A9B50ABC665",
-    "docs/display-setup.md": "511709DB71DBC0008505993C054CF5D6B5A9173F645FC8FBC1D32903B55240C7",
-    ".ai/CONTEXT.md": "6abb0ce89bea1ab71033d2cac52573c81097dd0ed10a49247577db75fe881a32",
-    "scripts/compress-menu-images.py": "D8A1CA59D53F06AD0C6F675101FF576CA5CD386AA1520C4DBE1190CBFB4F9D44",
-    "scripts/convert-menu-png.py": "pending",
-    "scripts/menu-image-prompts.json": "pending",
-    "menu/data/food.json": "1A115883C15B2EC046987964CFC2F78F695AB5165353865C81185C80CCE9F9BC",
-    "menu/board.html": "pending"
-  },
-  "decisions": [
-    "Portrait 9:16 for monitor",
-    "Food in food.json; board loads drinks+food",
-    "Public GitHub: coffee-friends-menu @ 61e871d; mirror coffee-menu @ d632850 for TV URL",
-    "Display: USB HDMI player + NC185B OK for now",
-    "Seasonal lineup live: 9 new + glyase/mango-chili refresh @ ef3dacd / d9fbcf9",
-    "Image canon locked: .ai/IMAGE_GEN_RULES.md + menu-image-prompts.json style (plastic cup no lid, white studio); no GrabCut"
+    ".ai/data/seasonal-paused-2026-09.json"
   ],
   "counts": {
-    "drinks": 44,
-    "drink_images": 55,
-    "food": 13,
-    "food_images": 13,
-    "sync_repo_images": 60,
-    "images_lt_100kb": 60,
-    "images_gt_500kb": 0,
-    "drinks_regenerated_v4": 46,
-    "food_regenerated_v4": 14
+    "drinks": 38,
+    "food": 15,
+    "combos": 2
   },
-  "asset_ver": "20260909-no-raf",
-  "deploy_commit": "e79ea84",
-  "restore_commit": "09062363a68ec7dc4c03710822de4b3315cfcecc",
-  "last_error": null,
-  "retry_count": 0,
+  "asset_ver": "20260913-promo",
+  "decisions": [
+    "MENU_DISCOUNT_PERCENT=0 paused; restore later",
+    "Seasonal category paused in .ai/data/seasonal-paused-2026-09.json; iced latte kept in cold_coffee",
+    "September personal-discount promo slide",
+    "Combo items use item.discountPercent=20"
+  ],
   "blockers": [],
-  "next_action": "Hard refresh TV after sandwich-roll photo",
-  "mirror_commit": "ef91992",
-  "live_checks": {
-    "board_html_asset_ver": "20260812-v4",
-    "sync_head_matches_origin_main": true,
-    "total_images_mb": 3.1
-  },
-  "image_gen_rules": ".ai/IMAGE_GEN_RULES.md",
-  "image_prompts": "scripts/menu-image-prompts.json"
+  "next": "Hard refresh TV; later restore 20% + seasonal",
+  "updated": "2026-09-13"
 }

@@ -14,6 +14,8 @@
 | `menu/assets/images/drinks/` | Фото напитков (white studio, JPEG) |
 | `menu/assets/images/food/` | Фото еды (white studio, JPEG) |
 | `D:/projects/coffee-friends-menu-sync/` | Зеркало GitHub `coffee-friends-menu` (deploy source) |
+| `docs/CoffeeFriends-svodnoe-menu.xlsx` | Сводное меню Excel (все позиции витрины) |
+| `scripts/export-menu-xlsx.py` | Пересборка сводного Excel из JSON |
 | `scripts/import-cofepoint-menu.py` | Импорт COFEPOINT → drinks.json + food.json |
 | `scripts/compress-menu-images.py` | Сжатие JPG (max 960px, q78) |
 | `scripts/convert-menu-png.py` | PNG→JPG (q85, max 960px) + копия в оба репо |
@@ -21,8 +23,7 @@
 | `scripts/menu-image-prompts.json` | AI-промпты для 46 drinks + 14 food |
 | `scripts/white-bg-menu-images.py` | Белая студия: сегментация фона и нормализация JPG (deprecated) |
 | `scripts/serve-menu.ps1` | Локальный сервер меню |
-| `C:/Users/user/.cursor/projects/d-projects-COFEPOINT/assets/test-espresso-tonic.png` | Локальный QA-кадр (не в репозитории меню) |
-| `.ai/data/seasonal-drinks-draft-2026-08.md` | Черновик сезонных: имена, цены, техкарты |
+| `.ai/data/seasonal-paused-2026-09.json` | Сезонное меню на паузе (вернуть в drinks.json) |
 | `.ai/data/barista-techcards-chat.txt` | Текст техкарт для чата бариста (готово к копированию) |
 
 ## Asset deploy
