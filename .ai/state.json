@@ -1,5 +1,5 @@
 {
-  "context_version": 28,
+  "context_version": 29,
   "timestamp": "2026-09-13T19:20:00+03:00",
   "hot_files": [
     "menu/board.html",
@@ -13,7 +13,7 @@
     "food": 15,
     "combos": 2
   },
-  "asset_ver": "20260913-promo",
+  "asset_ver": "20260913-promo2",
   "decisions": [
     "MENU_DISCOUNT_PERCENT=0 paused; restore later",
     "Seasonal category paused in .ai/data/seasonal-paused-2026-09.json; iced latte kept in cold_coffee",
