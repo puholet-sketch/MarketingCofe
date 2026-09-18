@@ -1,26 +1,12 @@
 {
-  "context_version": 29,
-  "timestamp": "2026-09-13T19:20:00+03:00",
+  "context_version": 31,
+  "updated": "2026-09-18",
+  "asset_ver": "20260918-autumn",
   "hot_files": [
     "menu/board.html",
-    "menu/data/drinks.json",
-    "menu/data/food.json",
     "menu/assets/css/menu.css",
-    ".ai/data/seasonal-paused-2026-09.json"
-  ],
-  "counts": {
-    "drinks": 38,
-    "food": 15,
-    "combos": 2
-  },
-  "asset_ver": "20260913-promo2",
-  "decisions": [
-    "MENU_DISCOUNT_PERCENT=0 paused; restore later",
-    "Seasonal category paused in .ai/data/seasonal-paused-2026-09.json; iced latte kept in cold_coffee",
-    "September personal-discount promo slide",
-    "Combo items use item.discountPercent=20"
+    ".ai/CONTEXT.md"
   ],
   "blockers": [],
-  "next": "Hard refresh TV; later restore 20% + seasonal",
-  "updated": "2026-09-13"
+  "next": "Hard refresh TV"
 }
