@@ -1,6 +1,6 @@
 # MarketingCofe — CoffeeFriends digital menu
 
-context_version: 31
+context_version: 32
 updated: 2026-09-18
 
 ## Цель
@@ -9,10 +9,9 @@ updated: 2026-09-18
 
 ## Статус
 
-- Live: `ASSET_VER=20260918-leaves2`
-- Промо: белый фон; падающая листва только через transform (без top — не ломает вёрстку)
+- Live: `ASSET_VER=20260918-leaves3`
+- Промо: один DOM-узел (reuse), белый фон, листва через translateY(px)
 - Порядок: интро → скидосы → 2 карточки → скидосы → …
-- Глобальная 20% снята; сезонное на паузе
 
 ## Следующий шаг
 
